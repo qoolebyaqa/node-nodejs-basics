@@ -1,5 +1,15 @@
+import fs from "fs/promises";
+import { isFileExistAsync } from "../utils.js";
+
 const list = async () => {
-  // Write your code here
+  const targetPath = "src/fs/files";
+
+  if (await isFileExistAsync(targetPath)) {
+    const files = await fs.readdir(targetPath);
+    console.log(files)
+  } else {
+    throw new Error("FS operation failed");
+  }
 };
 
 await list();
